@@ -21,6 +21,7 @@ import java.util.regex.Pattern;
 public class RecoveryInventoryEvent implements Listener {
     @EventHandler
     public void onInventoryClickEvent(InventoryClickEvent event) {
+        long startTime = System.currentTimeMillis();
         ConcurrentHashMap<UUID, Integer> data = new ConcurrentHashMap<>();
         Player player = (Player) event.getWhoClicked();
         UUID uuid = player.getUniqueId();
@@ -67,7 +68,11 @@ public class RecoveryInventoryEvent implements Listener {
                     player.sendMessage("§a§l你回收获得了" + price + "金币！");
                 } catch (Exception ignored) {
                 }
+                // 计算耗时
+                long endTime = System.currentTimeMillis();
+                Logger.debug("§e物品回收耗时: " + (endTime - startTime) + "ms");
                 Logger.debug("§e物品回收界面点击按钮触发");
+
             }
         }
     }

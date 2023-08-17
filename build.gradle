@@ -8,6 +8,7 @@ version = '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
     maven { url 'https://jitpack.io' }
+    maven { url 'https://r.irepo.space/maven/' }
     maven {
         name = "papermc-repo"
         url = "https://repo.papermc.io/repository/maven-public/"
@@ -19,6 +20,7 @@ repositories {
 }
 
 dependencies {
+    compileOnly("pers.neige.neigeitems:NeigeItems:1.15.16")
     compileOnly "com.github.YiC200333:XConomyAPI:2.21.4"
     compileOnly "com.destroystokyo.paper:paper-api:1.12.2-R0.1-SNAPSHOT"
 }

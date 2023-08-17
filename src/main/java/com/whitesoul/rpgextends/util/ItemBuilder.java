@@ -3,7 +3,6 @@ package com.whitesoul.rpgextends.util;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.material.MaterialData;
 
 import java.util.Arrays;
 
