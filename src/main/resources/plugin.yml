@@ -1,0 +1,3 @@
+name: RPGExtends
+version: '${version}'
+main: com.whitesoul.rpgextends.RPGExtends
