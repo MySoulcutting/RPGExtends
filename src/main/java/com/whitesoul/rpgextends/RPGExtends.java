@@ -1,17 +1,15 @@
 package com.whitesoul.rpgextends;
 
+import com.whitesoul.rpgextends.command.MainCommand;
+import com.whitesoul.rpgextends.command.MainCommandTab;
 import com.whitesoul.rpgextends.module.antidrop.PlayerDropItemListener;
 import com.whitesoul.rpgextends.module.antifkey.PlayerSwapHandItemsListener;
 import com.whitesoul.rpgextends.module.antiwather.WeatherChangeListener;
-import com.whitesoul.rpgextends.module.decompose.DecomposeCommand;
 import com.whitesoul.rpgextends.module.decompose.DecomposeConfig;
 import com.whitesoul.rpgextends.module.decompose.DecomposeInventoryEvent;
 import com.whitesoul.rpgextends.module.recovery.RecoveryInventoryEvent;
-import com.whitesoul.rpgextends.module.recovery.RecoveryCommand;
 import com.whitesoul.rpgextends.util.Logger;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitScheduler;
 
 
 public final class RPGExtends extends JavaPlugin {
@@ -29,6 +27,10 @@ public final class RPGExtends extends JavaPlugin {
         Logger.info("§6 禁止天气切换 §a√");
         Logger.info("§6 物品回收 §a√");
         Logger.info("§6 物品分解 §a√");
+        Logger.info("§e 自定义重生点 §c×");
+        // 指令注册
+        getCommand("rpgex").setExecutor(new MainCommand());
+        getCommand("rpgex").setTabCompleter(new MainCommandTab());
         // 禁止F键使用注册
         getServer().getPluginManager().registerEvents(new PlayerSwapHandItemsListener(),this);
         // 禁止丢弃物品注册
@@ -37,11 +39,9 @@ public final class RPGExtends extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new WeatherChangeListener(),this);
         // 物品回收系统注册
         getServer().getPluginManager().registerEvents(new RecoveryInventoryEvent(),this);
-        getCommand("rpgex").setExecutor(new RecoveryCommand());
         // 物品分解系统注册
         DecomposeConfig.initConfig();
         getServer().getPluginManager().registerEvents(new DecomposeInventoryEvent(),this);
-        getCommand("rpgex").setExecutor(new DecomposeCommand());
         // 耗时统计
         long endTime = System.currentTimeMillis();
         Logger.info("§a加载耗时: §f" + (endTime - startTime) + "ms");

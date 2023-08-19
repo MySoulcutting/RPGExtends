@@ -22,13 +22,7 @@ public class DecomposeConfig {
     public static FileConfiguration getConfig(){
         return config;
     }
-    public List getList(String key){
-        return (List) getConfig().get(key);
-    }
-    public Set<String> keys(String predefine){
-        return getConfig().getConfigurationSection(predefine).getKeys(false);
-    }
-    public Set<String> keys(){
-        return getConfig().getKeys(false);
+    public static void reload(){
+        config = YamlConfiguration.loadConfiguration(file);
     }
 }

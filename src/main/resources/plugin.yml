@@ -4,3 +4,4 @@ main: com.whitesoul.rpgextends.RPGExtends
 author: WhiteSoul
 commands:
   rpgex:
+    description: 插件主命令
