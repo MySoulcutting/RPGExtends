@@ -1,6 +1,8 @@
 package com.whitesoul.rpgextends.module.recovery;
 
 import com.whitesoul.rpgextends.RPGExtends;
+import com.whitesoul.rpgextends.module.decompose.DecomposeInventoryEvent;
+import com.whitesoul.rpgextends.util.InvClose;
 import com.whitesoul.rpgextends.util.Logger;
 import me.yic.xconomy.api.XConomyAPI;
 import org.bukkit.entity.Player;
@@ -80,16 +82,7 @@ public class RecoveryInventoryEvent implements Listener {
     @EventHandler
     public void onInventoryCloseEvent(InventoryCloseEvent event) {
         if (event.getInventory().getHolder() instanceof RecoveryHolder) {
-            Inventory inv = event.getInventory();
-            for (int i = 9; i < 27; i++) {
-                if (inv.getItem(i) != null) {
-                    event.getPlayer().getInventory().addItem(inv.getItem(i));
-                    if (event.getPlayer().getInventory().firstEmpty() == -1) {
-                        event.getPlayer().getWorld().dropItem(event.getPlayer().getLocation(), inv.getItem(i));
-                        event.getPlayer().sendMessage("§c§l背包已满，物品已掉落至地面！");
-                    }
-                }
-            }
+            InvClose.close(event);
         }
     }
 }

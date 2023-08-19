@@ -1,5 +1,6 @@
 package com.whitesoul.rpgextends.module.decompose;
 
+import com.whitesoul.rpgextends.RPGExtends;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

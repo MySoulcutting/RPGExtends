@@ -1,0 +1,29 @@
+Item:
+  #这个懂的都懂了吧
+  分解一:
+    #分解物品的名字
+    ItemName: "我要被分解"
+    #是否启用分解需要花费金币
+    MoneyEnable: true
+    #花费数量
+    NeedMoney: 10
+    #成功几率 100% = 100
+    SuccessRate: 100
+    #分解得到的物品
+    Items:
+      - "蜗牛壳:1"
+      - "甲虫壳:3"
+  分解二:
+    ItemName: "我要被分解了"
+    MoneyEnable: true
+    NeedMoney: 10
+    Items:
+      - "蜗牛壳:1"
+      - "甲虫壳:3"
+  分解三:
+    ItemName: "我要也被分解"
+    MoneyEnable: true
+    NeedMoney: 10
+    Items:
+      - "蜗牛壳:1"
+      - "甲虫壳:3"

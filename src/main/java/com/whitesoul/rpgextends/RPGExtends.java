@@ -4,6 +4,7 @@ import com.whitesoul.rpgextends.module.antidrop.PlayerDropItemListener;
 import com.whitesoul.rpgextends.module.antifkey.PlayerSwapHandItemsListener;
 import com.whitesoul.rpgextends.module.antiwather.WeatherChangeListener;
 import com.whitesoul.rpgextends.module.decompose.DecomposeCommand;
+import com.whitesoul.rpgextends.module.decompose.DecomposeConfig;
 import com.whitesoul.rpgextends.module.decompose.DecomposeInventoryEvent;
 import com.whitesoul.rpgextends.module.recovery.RecoveryInventoryEvent;
 import com.whitesoul.rpgextends.module.recovery.RecoveryCommand;
@@ -38,6 +39,7 @@ public final class RPGExtends extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new RecoveryInventoryEvent(),this);
         getCommand("rpgex").setExecutor(new RecoveryCommand());
         // 物品分解系统注册
+        DecomposeConfig.initConfig();
         getServer().getPluginManager().registerEvents(new DecomposeInventoryEvent(),this);
         getCommand("rpgex").setExecutor(new DecomposeCommand());
         // 耗时统计
