@@ -15,7 +15,7 @@ import org.bukkit.inventory.Inventory;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-public class DecomposeInventoryEvent implements Listener {
+public class DecomposeInventoryListener implements Listener {
     @EventHandler
     public void onInventoryClickEvent(InventoryClickEvent event) {
         long startTime = System.currentTimeMillis();

@@ -2,6 +2,10 @@ name: RPGExtends
 version: '${version}'
 main: com.whitesoul.rpgextends.RPGExtends
 author: WhiteSoul
+depend:
+  - XConomy
+  - PlaceholderAPI
+description: "一款多功能RPG插件 QQ: 1462958459"
 commands:
   rpgex:
     description: 插件主命令

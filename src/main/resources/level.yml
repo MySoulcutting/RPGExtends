@@ -1,0 +1,10 @@
+Level:
+  #等级
+  1:
+    #执行的指令 指令为后台执行  支持papi变量
+    commands:
+      - "say 玩家 %player_name% &a等级已经达到1级"
+  2:
+    #执行的指令 指令为后台执行  支持papi变量
+    commands:
+      - "say 玩家 %player_name% &a等级已经达到2级"
