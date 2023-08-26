@@ -5,6 +5,7 @@ author: WhiteSoul
 depend:
   - XConomy
   - PlaceholderAPI
+  - SoulSQL
 description: "一款多功能RPG插件 QQ: 1462958459"
 commands:
   rpgex:

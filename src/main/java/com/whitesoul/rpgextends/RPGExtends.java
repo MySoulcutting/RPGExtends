@@ -11,7 +11,12 @@ import com.whitesoul.rpgextends.module.decompose.DecomposeInventoryListener;
 import com.whitesoul.rpgextends.module.level.LevelConfig;
 import com.whitesoul.rpgextends.module.level.PlayerLevelChangeListener;
 import com.whitesoul.rpgextends.module.recovery.RecoveryInventoryListener;
+import com.whitesoul.rpgextends.module.spawnpoints.PlayerRespawnListener;
+import com.whitesoul.rpgextends.module.spawnpoints.SpawnPointsConfig;
 import com.whitesoul.rpgextends.util.Logger;
+import com.whitesoul.soulsql.SoulSQL;
+import com.whitesoul.soulsql.database.Mysql;
+import com.whitesoul.soulsql.database.SQL;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
@@ -33,6 +38,10 @@ public final class RPGExtends extends JavaPlugin {
         Logger.info("§6 物品分解 §a√");
         Logger.info("§6 自定义重生点 §c×");
         Logger.info("§6 等级指令 §a√");
+        // 数据库连接
+        Mysql.createConfig("mysql",this);
+        // 数据库表创建
+        SQL.createTable("spawnpoints",new String[]{"uuid","name","spawnpointname"},new String[]{"varchar(255)","varchar(255)","varchar(255)"},new String[]{"not null","not null","not null"});
         // 指令注册
         getCommand("rpgex").setExecutor(new MainCommand());
         getCommand("rpgex").setTabCompleter(new MainCommandTab());
@@ -52,6 +61,9 @@ public final class RPGExtends extends JavaPlugin {
         // 等级称号系统注册
         LevelConfig.initConfig();
         getServer().getPluginManager().registerEvents(new PlayerLevelChangeListener(),this);
+        // 重生点系统注册
+        SpawnPointsConfig.initConfig();
+        getServer().getPluginManager().registerEvents(new PlayerRespawnListener(),this);
         // 耗时统计
         long endTime = System.currentTimeMillis();
         Logger.info("§a加载耗时: §f" + (endTime - startTime) + "ms");

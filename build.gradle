@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'com.whitesoul'
-version = '1.3.2'
+version = '1.3.3'
 
 repositories {
     mavenCentral()
@@ -28,6 +28,7 @@ dependencies {
     compileOnly "com.github.YiC200333:XConomyAPI:2.21.4"
     compileOnly "com.destroystokyo.paper:paper-api:1.12.2-R0.1-SNAPSHOT"
     compileOnly 'me.clip:placeholderapi:2.11.3'
+    compileOnly fileTree(dir:'lib',includes:['*jar'])
 }
 
 def targetJavaVersion = 8
