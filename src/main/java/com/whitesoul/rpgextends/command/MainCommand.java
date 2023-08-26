@@ -5,6 +5,7 @@ import com.whitesoul.rpgextends.module.decompose.DecomposeConfig;
 import com.whitesoul.rpgextends.module.decompose.DecomposeHolder;
 import com.whitesoul.rpgextends.module.level.LevelConfig;
 import com.whitesoul.rpgextends.module.recovery.RecoveryHolder;
+import com.whitesoul.rpgextends.module.spawnpoints.SpawnPointsConfig;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -21,6 +22,7 @@ public class MainCommand implements CommandExecutor {
                         RPGExtends.INSTANCE.reloadConfig();
                         DecomposeConfig.reload();
                         LevelConfig.reload();
+                        SpawnPointsConfig.reload();
                         player.sendMessage("重载成功！");
                         }
                     }
@@ -39,6 +41,10 @@ public class MainCommand implements CommandExecutor {
                     player.sendMessage("§e/rpgex recovery §f打开物品回收界面");
                     player.sendMessage("§e/rpgex decompose §f打开物品分解界面");
                     player.sendMessage("§e/rpgex help §f查看帮助");
+                    player.sendMessage("§e/spawn §f返回重生点");
+                    player.sendMessage("§e/spawn set <玩家名> <重生点名> §f设置玩家重生点");
+                    player.sendMessage("§e/spawn tp <玩家名> §f传送到玩家重生点");
+
                     break;
             }
         }

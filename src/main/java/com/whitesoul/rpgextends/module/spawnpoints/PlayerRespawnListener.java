@@ -8,6 +8,6 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 public class PlayerRespawnListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerRespawnEvent(PlayerRespawnEvent event) {
-
+        PlayerSpawnPointsData.getSpawnPoints(event.getPlayer());
     }
 }
