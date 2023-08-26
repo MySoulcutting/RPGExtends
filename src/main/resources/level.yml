@@ -1,10 +1,19 @@
 Level:
-  #等级
-  1:
+  #唯一标识
+  斗之气一段:
+    #等级
+    level: 1
     #执行的指令 指令为后台执行  支持papi变量
     commands:
-      - "say 玩家 %player_name% &a等级已经达到1级"
-  2:
-    #执行的指令 指令为后台执行  支持papi变量
+      - "lp user %player_name% meta addprefix %player_level% 斗之气一段"
+      - "say 玩家 %player_name% &a等级已经达到斗之气一段"
+  斗之气二段:
+    level: 10
     commands:
-      - "say 玩家 %player_name% &a等级已经达到2级"
+      - "lp user %player_name% meta addprefix %player_level% 斗之气二段"
+      - "say 玩家 %player_name% &a等级已经达到斗之气二段"
+  斗之气三段:
+    level: 20
+    commands:
+      - "lp user %player_name% meta addprefix %player_level% 斗之气三段"
+      - "say 玩家 %player_name% &a等级已经达到斗之气三段"

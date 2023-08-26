@@ -3,6 +3,7 @@ package com.whitesoul.rpgextends.command;
 import com.whitesoul.rpgextends.RPGExtends;
 import com.whitesoul.rpgextends.module.decompose.DecomposeConfig;
 import com.whitesoul.rpgextends.module.decompose.DecomposeHolder;
+import com.whitesoul.rpgextends.module.level.LevelConfig;
 import com.whitesoul.rpgextends.module.recovery.RecoveryHolder;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -19,6 +20,7 @@ public class MainCommand implements CommandExecutor {
                     if(player.isOp()){
                         RPGExtends.INSTANCE.reloadConfig();
                         DecomposeConfig.reload();
+                        LevelConfig.reload();
                         player.sendMessage("重载成功！");
                         }
                     }
@@ -33,7 +35,7 @@ public class MainCommand implements CommandExecutor {
                     break;
                 case "help":
                     player.sendMessage("§aRPGExtends帮助");
-                    player.sendMessage("§e/rpgex reload §f重载插件配置");
+                    player.sendMessage("§e/rpgex reload §f重载插件全部配置");
                     player.sendMessage("§e/rpgex recovery §f打开物品回收界面");
                     player.sendMessage("§e/rpgex decompose §f打开物品分解界面");
                     player.sendMessage("§e/rpgex help §f查看帮助");

@@ -30,7 +30,7 @@ public final class RPGExtends extends JavaPlugin {
         Logger.info("§6 物品回收 §a√");
         Logger.info("§6 物品分解 §a√");
         Logger.info("§6 自定义重生点 §c×");
-        Logger.info("§6 等级指令 §c√");
+        Logger.info("§6 等级指令 §a√");
         // 指令注册
         getCommand("rpgex").setExecutor(new MainCommand());
         getCommand("rpgex").setTabCompleter(new MainCommandTab());
