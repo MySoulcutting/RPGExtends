@@ -4,6 +4,7 @@ import com.whitesoul.rpgextends.command.MainCommand;
 import com.whitesoul.rpgextends.command.MainCommandTab;
 import com.whitesoul.rpgextends.module.antidrop.PlayerDropItemListener;
 import com.whitesoul.rpgextends.module.antifkey.PlayerSwapHandItemsListener;
+import com.whitesoul.rpgextends.module.antifood.FoodLevelChangeListener;
 import com.whitesoul.rpgextends.module.antiwather.WeatherChangeListener;
 import com.whitesoul.rpgextends.module.decompose.DecomposeConfig;
 import com.whitesoul.rpgextends.module.decompose.DecomposeInventoryListener;
@@ -27,6 +28,7 @@ public final class RPGExtends extends JavaPlugin {
         Logger.info("§6 禁止F键使用 §a√");
         Logger.info("§6 禁止物品丢弃 §a√");
         Logger.info("§6 禁止天气切换 §a√");
+        Logger.info("§6 禁止饥饿度使用 §a√");
         Logger.info("§6 物品回收 §a√");
         Logger.info("§6 物品分解 §a√");
         Logger.info("§6 自定义重生点 §c×");
@@ -40,6 +42,8 @@ public final class RPGExtends extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerDropItemListener(),this);
         // 禁止天气切换注册
         getServer().getPluginManager().registerEvents(new WeatherChangeListener(),this);
+        // 禁止饥饿度使用注册
+        getServer().getPluginManager().registerEvents(new FoodLevelChangeListener(),this);
         // 物品回收系统注册
         getServer().getPluginManager().registerEvents(new RecoveryInventoryListener(),this);
         // 物品分解系统注册

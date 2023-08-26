@@ -12,7 +12,6 @@ public class PlayerLevelChangeListener implements Listener {
     public void onPlayerLevelChange(PlayerLevelChangeEvent event) {
         for (String level : LevelConfig.getConfig().getConfigurationSection("Level").getKeys(false)) {
             if (event.getNewLevel() == LevelConfig.getConfig().getInt("Level." + level + ".level")){
-                Logger.debug("等级: " + LevelConfig.getConfig().getInt("Level." + level + ".level"));
                 for (String command : LevelConfig.getConfig().getStringList("Level." + level + ".commands")){
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(),PlaceholderAPI.setPlaceholders(event.getPlayer(), command.replace("&","§")));
                     Logger.debug("等级已执行后台命令");
