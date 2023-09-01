@@ -10,6 +10,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ItemStack;
 
 public class IdentifyInlayInventoryListener implements Listener {
     @EventHandler
@@ -36,19 +38,20 @@ public class IdentifyInlayInventoryListener implements Listener {
             Location location = new Location(world, x, y, z);
             // 判断玩家右键的方块
             if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && event.getClickedBlock().getLocation().equals(location)) {
-                Logger.debug("§e玩家右键的方块: " + event.getClickedBlock().getLocation() + "不是镶嵌台");
+                Logger.debug("§e玩家右键的方块: " + event.getClickedBlock().getLocation() + "是镶嵌台");
             } else {
                 return;
             }
         }
         // 判断镶嵌物品名字
         for (String item : IdentifyInlayConfig.getConfig().getConfigurationSection("Item").getKeys(false)) {
-            if (event.getItem() != null && event.getItem().hasItemMeta() && event.getItem().getItemMeta().hasDisplayName() && event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(IdentifyInlayConfig.getConfig().getString("Item." + item + ".ItemName"))) {
-                Logger.debug("§e玩家右键的物品: " + event.getItem().getItemMeta().getDisplayName() + "是镶嵌物品");
+            ItemStack itemInMainHand = event.getPlayer().getInventory().getItemInMainHand();
+            if (event.getHand() == EquipmentSlot.HAND && itemInMainHand != null && itemInMainHand.hasItemMeta() && itemInMainHand.getItemMeta().hasDisplayName() && itemInMainHand.getItemMeta().getDisplayName().equalsIgnoreCase(IdentifyInlayConfig.getConfig().getString("Item." + item + ".ItemName"))) {
+                Logger.debug("§e玩家右键的物品: " + itemInMainHand.getItemMeta().getDisplayName() + "是镶嵌物品");
                 event.getPlayer().sendMessage("§e你打开了镶嵌界面");
                 String gui = IdentifyInlayConfig.getConfig().getString("Item." + item + ".InlayGUIName");
                 Bukkit.dispatchCommand(player,"ie open " + gui);
-            } else {
+            } else if (event.getHand() != EquipmentSlot.OFF_HAND){
                 event.getPlayer().sendMessage("§e该物品不可镶嵌");
             }
         }
