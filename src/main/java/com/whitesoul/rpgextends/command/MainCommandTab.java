@@ -17,9 +17,9 @@ public class MainCommandTab implements TabExecutor {
     public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] strings) {
         List<String> tabCompletions = new ArrayList<>();
         if (strings.length == 1) {
-            tabCompletions.add("reload");
             tabCompletions.add("recovery");
             tabCompletions.add("decompose");
+            tabCompletions.add("reload");
             tabCompletions.add("help");
         }
         return tabCompletions;

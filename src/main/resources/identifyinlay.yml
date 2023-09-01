@@ -1,0 +1,13 @@
+#镶嵌识别配置文件
+Block:
+  新手村镶嵌台:
+    world: "world"
+    x: 0
+    y: 0
+    z: 0
+Item:
+  铁剑镶嵌:
+    #物品名称
+    ItemName: "&e&l懂得都懂"
+    #镶嵌界面名称
+    InlayGUIName: "魔晶"

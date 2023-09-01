@@ -1,6 +1,7 @@
 package com.whitesoul.rpgextends.command;
 
 import com.whitesoul.rpgextends.RPGExtends;
+import com.whitesoul.rpgextends.module.IdentifyInlay.IdentifyInlayConfig;
 import com.whitesoul.rpgextends.module.decompose.DecomposeConfig;
 import com.whitesoul.rpgextends.module.decompose.DecomposeHolder;
 import com.whitesoul.rpgextends.module.level.LevelConfig;
@@ -23,7 +24,8 @@ public class MainCommand implements CommandExecutor {
                         DecomposeConfig.reload();
                         LevelConfig.reload();
                         SpawnPointsConfig.reload();
-                        player.sendMessage("重载成功！");
+                        IdentifyInlayConfig.reload();
+                        player.sendMessage("§f[§eRPGExtends§e] §a所有配置文件重载成功！");
                         }
                     }
                     break;
@@ -44,7 +46,6 @@ public class MainCommand implements CommandExecutor {
                     player.sendMessage("§e/spawn §f返回重生点");
                     player.sendMessage("§e/spawn set <玩家名> <重生点名> §f设置玩家重生点");
                     player.sendMessage("§e/spawn tp <玩家名> §f传送到玩家重生点");
-
                     break;
             }
         }
