@@ -19,6 +19,7 @@ public class MainCommandTab implements TabExecutor {
         if (strings.length == 1) {
             tabCompletions.add("recovery");
             tabCompletions.add("decompose");
+            tabCompletions.add("selectjob");
             tabCompletions.add("reload");
             tabCompletions.add("help");
         }

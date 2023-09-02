@@ -15,11 +15,14 @@ import com.whitesoul.rpgextends.module.decompose.DecomposeInventoryListener;
 import com.whitesoul.rpgextends.module.level.LevelConfig;
 import com.whitesoul.rpgextends.module.level.PlayerLevelChangeListener;
 import com.whitesoul.rpgextends.module.recovery.RecoveryInventoryListener;
+import com.whitesoul.rpgextends.module.selectjob.SelectJobConfig;
+import com.whitesoul.rpgextends.module.selectjob.SelectJobInventoryListener;
 import com.whitesoul.rpgextends.module.spawnpoints.PlayerJoinListener;
 import com.whitesoul.rpgextends.module.spawnpoints.PlayerQuitListener;
 import com.whitesoul.rpgextends.module.spawnpoints.PlayerRespawnListener;
 import com.whitesoul.rpgextends.module.spawnpoints.SpawnPointsConfig;
 import com.whitesoul.rpgextends.util.Logger;
+import com.whitesoul.rpgextends.util.Metrics;
 import com.whitesoul.soulsql.database.Mysql;
 import com.whitesoul.soulsql.database.SQL;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -44,6 +47,9 @@ public final class RPGExtends extends JavaPlugin {
         Logger.info("§6 自定义重生点 §a√×");
         Logger.info("§6 等级指令 §a√");
         Logger.info("§6 镶嵌识别 §a√");
+        Logger.info("§6 职业选择 §a√");
+        // 统计
+        new Metrics(this, 19703);
 //        // 数据库连接
 //        Mysql.createConfig("mysql",this);
 //        // 数据库表创建
@@ -77,6 +83,9 @@ public final class RPGExtends extends JavaPlugin {
         // 镶嵌识别注册
         IdentifyInlayConfig.initConfig();
         getServer().getPluginManager().registerEvents(new IdentifyInlayInventoryListener(),this);
+        // 职业选择注册
+        SelectJobConfig.initConfig();
+        getServer().getPluginManager().registerEvents(new SelectJobInventoryListener(),this);
         // 耗时统计
         long endTime = System.currentTimeMillis();
         Logger.info("§a加载耗时: §f" + (endTime - startTime) + "ms");

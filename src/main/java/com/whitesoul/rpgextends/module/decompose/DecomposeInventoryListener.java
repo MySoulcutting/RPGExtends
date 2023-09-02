@@ -91,6 +91,7 @@ public class DecomposeInventoryListener implements Listener {
     public void onInventoryCloseEvent(InventoryCloseEvent event) {
         if (event.getInventory().getHolder() instanceof DecomposeHolder) {
             InvClose.close(event);
+            Logger.debug("§e物品分解关闭事件触发");
         }
     }
 }

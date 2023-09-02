@@ -1,0 +1,11 @@
+#职业选择配置文件
+Job:
+  战士:
+    commands:
+      - "lp user %player% permission set 战士"
+  弓箭手:
+    commands:
+      - "lp user %player% permission set 弓箭手"
+  法师:
+    commands:
+      - "lp user %player% permission set 法师"

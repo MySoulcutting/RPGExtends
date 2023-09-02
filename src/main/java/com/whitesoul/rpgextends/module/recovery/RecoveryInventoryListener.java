@@ -1,5 +1,6 @@
 package com.whitesoul.rpgextends.module.recovery;
 
+import com.whitesoul.rpgextends.module.decompose.DecomposeHolder;
 import com.whitesoul.rpgextends.util.InvClose;
 import com.whitesoul.rpgextends.util.Logger;
 import me.yic.xconomy.api.XConomyAPI;
@@ -79,6 +80,7 @@ public class RecoveryInventoryListener implements Listener {
     public void onInventoryCloseEvent(InventoryCloseEvent event) {
         if (event.getInventory().getHolder() instanceof RecoveryHolder) {
             InvClose.close(event);
+            Logger.debug("§e物品回收界面关闭触发");
         }
     }
 }

@@ -11,7 +11,7 @@ public class DecomposeHolder implements InventoryHolder {
     private static Inventory inventory;
     @Override
     public Inventory getInventory() {
-        return null;
+        return inventory;
     }
     public static void createInventory(){
         ItemBuilder button = new ItemBuilder(Material.STAINED_GLASS_PANE,1,"§c§l点击分解","§e该操作不可逆！");

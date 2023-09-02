@@ -3,6 +3,7 @@ package com.whitesoul.rpgextends.util;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 
+
 public class InvClose {
     public static void close(InventoryCloseEvent event) {
         Inventory inv = event.getInventory();
