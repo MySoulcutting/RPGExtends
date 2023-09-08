@@ -10,6 +10,7 @@ import com.whitesoul.rpgextends.module.antidrop.PlayerDropItemListener;
 import com.whitesoul.rpgextends.module.antifkey.PlayerSwapHandItemsListener;
 import com.whitesoul.rpgextends.module.antifood.FoodLevelChangeListener;
 import com.whitesoul.rpgextends.module.antiwather.WeatherChangeListener;
+import com.whitesoul.rpgextends.module.autorespawn.AutoRespawnListener;
 import com.whitesoul.rpgextends.module.decompose.DecomposeConfig;
 import com.whitesoul.rpgextends.module.decompose.DecomposeInventoryListener;
 import com.whitesoul.rpgextends.module.level.LevelConfig;
@@ -38,22 +39,13 @@ public final class RPGExtends extends JavaPlugin {
         Logger.info("§a插件作者: §fWhiteSoul");
         Logger.info("§c RPGExtends已加载！");
         Logger.info("§e 当前模块:");
-        Logger.info("§6 禁止F键使用 §a√");
-        Logger.info("§6 禁止物品丢弃 §a√");
-        Logger.info("§6 禁止天气切换 §a√");
-        Logger.info("§6 禁止饥饿度使用 §a√");
-        Logger.info("§6 物品回收 §a√");
-        Logger.info("§6 物品分解 §a√");
-        Logger.info("§6 自定义重生点 §a√×");
-        Logger.info("§6 等级指令 §a√");
-        Logger.info("§6 镶嵌识别 §a√");
-        Logger.info("§6 职业选择 §a√");
+        Logger.info("§6 禁止F键使用 §a已启用");
+        Logger.info("§6 禁止物品丢弃 §a已启用");
+        Logger.info("§6 禁止天气切换 §a已启用");
+        Logger.info("§6 禁止饥饿度使用 §a已启用");
+        Logger.info("§6 自动重生 §a已启用");
         // 统计
         new Metrics(this, 19703);
-//        // 数据库连接
-//        Mysql.createConfig("mysql",this);
-//        // 数据库表创建
-//        SQL.createTable("spawnpoints",new String[]{"uuid","name","spawnpointname"},new String[]{"varchar(255)","varchar(255)","varchar(255)"},new String[]{"not null","not null","not null"});
         // 指令注册
         getCommand("rpgex").setExecutor(new MainCommand());
         getCommand("rpgex").setTabCompleter(new MainCommandTab());
@@ -68,24 +60,60 @@ public final class RPGExtends extends JavaPlugin {
         // 禁止饥饿度使用注册
         getServer().getPluginManager().registerEvents(new FoodLevelChangeListener(),this);
         // 物品回收系统注册
-        getServer().getPluginManager().registerEvents(new RecoveryInventoryListener(),this);
+        if (getConfig().getBoolean("Module.Recovery")) {
+            getServer().getPluginManager().registerEvents(new RecoveryInventoryListener(), this);
+            Logger.info("§6 物品回收 §a已启用");
+        } else {
+            Logger.info("§6 物品回收 §c未启用");
+        }
         // 物品分解系统注册
-        DecomposeConfig.initConfig();
-        getServer().getPluginManager().registerEvents(new DecomposeInventoryListener(),this);
+        if (getConfig().getBoolean("Module.Decompose")) {
+            DecomposeConfig.initConfig();
+            getServer().getPluginManager().registerEvents(new DecomposeInventoryListener(), this);
+            Logger.info("§6 物品分解 §a已启用");
+        } else {
+            Logger.info("§6 物品分解 §c未启用");
+        }
         // 等级称号系统注册
-        LevelConfig.initConfig();
-        getServer().getPluginManager().registerEvents(new PlayerLevelChangeListener(),this);
+        if (getConfig().getBoolean("Module.Level")) {
+            LevelConfig.initConfig();
+            getServer().getPluginManager().registerEvents(new PlayerLevelChangeListener(), this);
+            Logger.info("§6 原版等级指令 §a已启用");
+        } else {
+            Logger.info("§6 原版等级指令 §c未启用");
+        }
         // 重生点系统注册
-        SpawnPointsConfig.initConfig();
-        getServer().getPluginManager().registerEvents(new PlayerRespawnListener(),this);
-        getServer().getPluginManager().registerEvents(new PlayerJoinListener(),this);
-        getServer().getPluginManager().registerEvents(new PlayerQuitListener(),this);
+        if (getConfig().getBoolean("Module.SpawnPoints")) {
+            SpawnPointsConfig.initConfig();
+            getServer().getPluginManager().registerEvents(new PlayerRespawnListener(), this);
+            getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
+            getServer().getPluginManager().registerEvents(new PlayerQuitListener(), this);
+            // 数据库连接
+            Mysql.createConfig("mysql",this);
+            // 数据库表创建
+            SQL.createTable("spawnpoints",new String[]{"uuid","name","spawnpointname"},new String[]{"varchar(255)","varchar(255)","varchar(255)"},new String[]{"not null","not null","not null"});
+            Logger.info("§6 自定义重生点 §a已启用");
+        } else {
+            Logger.info("§6 自定义重生点 §c未启用");
+        }
         // 镶嵌识别注册
-        IdentifyInlayConfig.initConfig();
-        getServer().getPluginManager().registerEvents(new IdentifyInlayInventoryListener(),this);
+        if (getConfig().getBoolean("Module.IdentifyInlay")) {
+            IdentifyInlayConfig.initConfig();
+            getServer().getPluginManager().registerEvents(new IdentifyInlayInventoryListener(), this);
+            Logger.info("§6 镶嵌识别 §a已启用");
+        } else {
+            Logger.info("§6 镶嵌识别 §c未启用");
+        }
         // 职业选择注册
-        SelectJobConfig.initConfig();
-        getServer().getPluginManager().registerEvents(new SelectJobInventoryListener(),this);
+        if (getConfig().getBoolean("Module.SelectJob")) {
+            SelectJobConfig.initConfig();
+            getServer().getPluginManager().registerEvents(new SelectJobInventoryListener(), this);
+            Logger.info("§6 职业选择 §a已启用");
+        } else {
+            Logger.info("§6 职业选择 §c未启用");
+        }
+        // 自动重生注册
+        getServer().getPluginManager().registerEvents(new AutoRespawnListener(),this);
         // 耗时统计
         long endTime = System.currentTimeMillis();
         Logger.info("§a加载耗时: §f" + (endTime - startTime) + "ms");

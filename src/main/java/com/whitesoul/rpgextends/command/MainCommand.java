@@ -51,6 +51,7 @@ public class MainCommand implements CommandExecutor {
                 case "help":
                     if (player.isOp()) {
                         player.sendMessage("§aRPGExtends帮助");
+                        player.sendMessage("§c使用未启用模块的指令，无效属于正常现象");
                         player.sendMessage("§e/rpgex reload §f重载插件全部配置");
                         player.sendMessage("§e/rpgex recovery §f打开物品回收界面");
                         player.sendMessage("§e/rpgex decompose §f打开物品分解界面");

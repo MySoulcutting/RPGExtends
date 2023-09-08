@@ -6,3 +6,17 @@ debug: true
 AntiWeatherWorlds:
   - "huangcheng"
   - "tagershamo"
+#模块控制
+Module:
+  #分解
+  Decompose: true
+  #回收
+  Recovery: true
+  #原版等级指令
+  Level: true
+  #斗破苍穹专用职业选择
+  SelectJob: false
+  #自定义重生点
+  SpawnPoints: false
+  #镶嵌识别
+  IdentifyInlay: true

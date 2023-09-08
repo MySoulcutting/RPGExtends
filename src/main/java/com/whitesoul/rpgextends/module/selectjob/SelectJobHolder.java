@@ -18,7 +18,7 @@ public class SelectJobHolder implements InventoryHolder{
         ItemBuilder zhanshi = new ItemBuilder(Material.PAPER,1,"§a§l战士","§e点击选择战士职业");
         ItemBuilder gongjianshou = new ItemBuilder(Material.PAPER,1,"§a§l弓箭手","§e点击选择弓箭手职业");
         ItemBuilder fashi = new ItemBuilder(Material.PAPER,1,"§a§l法师","§e点击选择法师职业");
-        inventory = Bukkit.createInventory(new SelectJobHolder(),9, "§c§l物品分解");
+        inventory = Bukkit.createInventory(new SelectJobHolder(),9, "§6§l职业选择");
         inventory.setItem(1,zhanshi);
         inventory.setItem(4,gongjianshou);
         inventory.setItem(7,fashi);
