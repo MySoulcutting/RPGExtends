@@ -40,6 +40,8 @@ public final class RPGExtends extends JavaPlugin {
         saveDefaultConfig();
         Logger.info("§a插件作者: §fWhiteSoul");
         Logger.info("§c RPGExtends已加载！");
+        Logger.info("§e 当前版本: §f" + getDescription().getVersion());
+        Logger.info("§e 当前服务器版本: §f" + getServer().getVersion());
         Logger.info("§e 当前模块:");
         Logger.info("§6 自动重生 §a已启用");
         // 统计

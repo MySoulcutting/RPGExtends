@@ -33,7 +33,7 @@ public class MainCommand implements CommandExecutor {
                         if (RPGExtends.INSTANCE.getConfig().getBoolean("Module.Decompose")) {
                             DecomposeConfig.reload();
                         }
-                        if (RPGExtends.INSTANCE.getConfig().getBoolean("Module.Recovery")) {
+                        if (RPGExtends.INSTANCE.getConfig().getBoolean("Module.IdentifyInlay")) {
                             IdentifyInlayConfig.reload();
                         }
                         if (RPGExtends.INSTANCE.getConfig().getBoolean("Module.SelectJob")) {

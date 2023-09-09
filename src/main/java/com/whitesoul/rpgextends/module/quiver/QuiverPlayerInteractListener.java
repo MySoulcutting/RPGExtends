@@ -17,7 +17,7 @@ import java.util.Set;
 import java.util.UUID;
 
 public class QuiverPlayerInteractListener implements Listener {
-    private Set<UUID> cooldownPlayers = new HashSet<>();
+    private final Set<UUID> cooldownPlayers = new HashSet<>();
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
@@ -40,9 +40,7 @@ public class QuiverPlayerInteractListener implements Listener {
                               cooldownPlayers.add(player.getUniqueId());
                               Bukkit.getScheduler().runTaskLater(RPGExtends.INSTANCE, () -> {
                                   cooldownPlayers.remove(player.getUniqueId());
-                              }, 20 * QuiverConfig.getConfig().getLong("Quiver." + key + ".Cooldown"));
-                          } else {
-                              player.sendMessage("§c§l弓箭还在冷却中！");
+                              }, QuiverConfig.getConfig().getLong("Quiver." + key + ".Cooldown"));
                           }
                     }
                 } else {

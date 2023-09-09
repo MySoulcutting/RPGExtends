@@ -6,5 +6,5 @@ Quiver:
     KnockBack: 2
     #发射力度
     Power: 2
-    #冷却(秒)
-    Cooldown: 0.5
+    #冷却(Tick) 20tick=1秒
+    Cooldown: 35
