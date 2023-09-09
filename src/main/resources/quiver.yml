@@ -1,0 +1,10 @@
+Quiver:
+  普通箭袋:
+    #识别箭袋名称
+    Name: "§f普通箭袋"
+    #击退
+    KnockBack: 2
+    #发射力度
+    Power: 2
+    #冷却(秒)
+    Cooldown: 0.5

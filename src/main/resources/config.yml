@@ -4,10 +4,19 @@
 debug: true
 #禁止天气切换的世界 （重启服务器生效）
 AntiWeatherWorlds:
-  - "huangcheng"
-  - "tagershamo"
-#模块控制
+  - "该功能已经禁用"
+#模块控制 (重启服务器生效)
 Module:
+  #自动重生
+  AutoRespawn: true
+  #禁用F键使用
+  AntiFKey: true
+  #丢弃保护
+  DropProtect: true
+  #禁止饥饿度
+  AntiFood: false
+  #禁止天气切换
+  AntiWeather: false
   #分解
   Decompose: true
   #回收
@@ -19,4 +28,6 @@ Module:
   #自定义重生点
   SpawnPoints: false
   #镶嵌识别
-  IdentifyInlay: true
+  IdentifyInlay: false
+  #箭袋
+  Quiver: true

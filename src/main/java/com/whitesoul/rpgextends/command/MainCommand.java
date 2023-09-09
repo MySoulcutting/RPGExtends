@@ -5,6 +5,7 @@ import com.whitesoul.rpgextends.module.IdentifyInlay.IdentifyInlayConfig;
 import com.whitesoul.rpgextends.module.decompose.DecomposeConfig;
 import com.whitesoul.rpgextends.module.decompose.DecomposeHolder;
 import com.whitesoul.rpgextends.module.level.LevelConfig;
+import com.whitesoul.rpgextends.module.quiver.QuiverConfig;
 import com.whitesoul.rpgextends.module.recovery.RecoveryHolder;
 import com.whitesoul.rpgextends.module.selectjob.SelectJobConfig;
 import com.whitesoul.rpgextends.module.selectjob.SelectJobHolder;
@@ -23,11 +24,24 @@ public class MainCommand implements CommandExecutor {
                 case "reload":{
                     if(player.isOp()){
                         RPGExtends.INSTANCE.reloadConfig();
-                        DecomposeConfig.reload();
-                        LevelConfig.reload();
-                        SpawnPointsConfig.reload();
-                        IdentifyInlayConfig.reload();
-                        SelectJobConfig.reload();
+                        if (RPGExtends.INSTANCE.getConfig().getBoolean("Module.SpawnPoints")) {
+                            SpawnPointsConfig.reload();
+                        }
+                        if (RPGExtends.INSTANCE.getConfig().getBoolean("Module.Quiver")) {
+                            QuiverConfig.reload();
+                        }
+                        if (RPGExtends.INSTANCE.getConfig().getBoolean("Module.Decompose")) {
+                            DecomposeConfig.reload();
+                        }
+                        if (RPGExtends.INSTANCE.getConfig().getBoolean("Module.Recovery")) {
+                            IdentifyInlayConfig.reload();
+                        }
+                        if (RPGExtends.INSTANCE.getConfig().getBoolean("Module.SelectJob")) {
+                            SelectJobConfig.reload();
+                        }
+                        if (RPGExtends.INSTANCE.getConfig().getBoolean("Module.Level")) {
+                            LevelConfig.reload();
+                        }
                         player.sendMessage("§f[§eRPGExtends§e] §a所有配置文件重载成功！");
                         }
                     }
