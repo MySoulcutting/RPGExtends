@@ -18,34 +18,34 @@ import java.util.UUID;
 
 public class QuiverPlayerInteractListener implements Listener {
     private final Set<UUID> cooldownPlayers = new HashSet<>();
+
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         ItemStack mainHand = player.getInventory().getItemInMainHand();
         ItemStack offHand = player.getInventory().getItemInOffHand();
-            // 判断主手是否为弓
-            if (mainHand != null && mainHand.getType().equals(Material.BOW)) {
-                for (String key : QuiverConfig.getConfig().getConfigurationSection("Quiver").getKeys(false)) {
-                    // 判断玩家副手是否有箭袋
-                    if (offHand != null && offHand.hasItemMeta() && offHand.getItemMeta().hasDisplayName() && offHand.getItemMeta().getDisplayName().equalsIgnoreCase(QuiverConfig.getConfig().getString("Quiver." + key + ".Name"))) {
+        // 判断主手是否为弓
+        if (mainHand != null && mainHand.getType().equals(Material.BOW)) {
+            for (String key : QuiverConfig.getConfig().getConfigurationSection("Quiver").getKeys(false)) {
+                // 判断玩家副手是否有箭袋
+                if (offHand != null && offHand.hasItemMeta() && offHand.getItemMeta().hasDisplayName() && offHand.getItemMeta().getDisplayName().equalsIgnoreCase(QuiverConfig.getConfig().getString("Quiver." + key + ".Name"))) {
                     // 判断是否为左键
-                      if (event.getAction().equals(Action.LEFT_CLICK_AIR) || event.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
+                    if (event.getAction().equals(Action.LEFT_CLICK_AIR) || event.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
                         // 发射
-                          if (!cooldownPlayers.contains(player.getUniqueId())) {
-                              Logger.debug("§e玩家左键发射箭");
-                              Arrow arrow = player.launchProjectile(Arrow.class);
-                              arrow.setVelocity(arrow.getVelocity().multiply(QuiverConfig.getConfig().getInt("Quiver." + key + ".Power")));
-                              arrow.setKnockbackStrength(QuiverConfig.getConfig().getInt("Quiver." + key + ".KnockBack"));
-                              arrow.setPickupStatus(Arrow.PickupStatus.DISALLOWED);
-                              cooldownPlayers.add(player.getUniqueId());
-                              Bukkit.getScheduler().runTaskLater(RPGExtends.INSTANCE, () -> {
-                                  cooldownPlayers.remove(player.getUniqueId());
-                              }, QuiverConfig.getConfig().getLong("Quiver." + key + ".Cooldown"));
-                          }
+                        if (!cooldownPlayers.contains(player.getUniqueId())) {
+                            Logger.debug("§e玩家左键发射箭");
+                            Arrow arrow = player.launchProjectile(Arrow.class);
+                            arrow.setVelocity(arrow.getVelocity().multiply(QuiverConfig.getConfig().getInt("Quiver." + key + ".Power")));
+                            arrow.setKnockbackStrength(QuiverConfig.getConfig().getInt("Quiver." + key + ".KnockBack"));
+                            arrow.setPickupStatus(Arrow.PickupStatus.DISALLOWED);
+
+                            cooldownPlayers.add(player.getUniqueId());
+                            Bukkit.getScheduler().runTaskLater(RPGExtends.INSTANCE, () -> {
+                                cooldownPlayers.remove(player.getUniqueId());
+                            }, QuiverConfig.getConfig().getLong("Quiver." + key + ".Cooldown"));
+                        }
                     }
-                } else {
-                        player.sendMessage("§c§l你没有箭袋！,无法发射箭！");
-                    }
+                }
             }
         }
     }

@@ -43,14 +43,11 @@ public final class RPGExtends extends JavaPlugin {
         Logger.info("§e 当前版本: §f" + getDescription().getVersion());
         Logger.info("§e 当前服务器版本: §f" + getServer().getVersion());
         Logger.info("§e 当前模块:");
-        Logger.info("§6 自动重生 §a已启用");
         // 统计
         new Metrics(this, 19703);
         // 指令注册
         getCommand("rpgex").setExecutor(new MainCommand());
         getCommand("rpgex").setTabCompleter(new MainCommandTab());
-        getCommand("spawn").setExecutor(new SpawnPointsCommand());
-        getCommand("spawn").setExecutor(new SpawnPointsCommandTab());
         // 禁止F键使用注册
         if (getConfig().getBoolean("Module.AntiFKey")) {
             getServer().getPluginManager().registerEvents(new PlayerSwapHandItemsListener(),this);
@@ -108,6 +105,8 @@ public final class RPGExtends extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new PlayerRespawnListener(), this);
             getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
             getServer().getPluginManager().registerEvents(new PlayerQuitListener(), this);
+            getCommand("spawn").setExecutor(new SpawnPointsCommand());
+            getCommand("spawn").setExecutor(new SpawnPointsCommandTab());
             // 数据库连接
             Mysql.createConfig("mysql",this);
             // 数据库表创建
